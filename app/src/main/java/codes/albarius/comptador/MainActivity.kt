@@ -1,6 +1,5 @@
 package codes.albarius.comptador
 
-import android.content.IntentSender
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -10,15 +9,17 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
+    private val INITIAL_TIME = 20
+
     internal lateinit var tapMeButton : Button
     internal lateinit var timeTextView : TextView
     internal lateinit var counterTextView : TextView
     internal var counter = 0
-    internal var time = 60
+    internal var time = INITIAL_TIME
 
     internal var appStarted = false
     internal lateinit var countdownTimer : CountDownTimer
-    internal val initialCountDownTimer : Long = 60000
+    internal val initialCountDownTimer : Long = time.toLong() *1000
     internal val intervalCountDownTimer : Long = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         counterTextView = findViewById(R.id.counterTextView)
 
         //Actualitzar  o definir valor counterview
-
 
         tapMeButton.setOnClickListener {
             if(!appStarted){
@@ -69,11 +69,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun endGame(){
-        Toast.makeText(this,getString(R.string.endGame), Toast.LENGTH_LONG).show()
+        Toast.makeText(this,getString(R.string.endgame, counter), Toast.LENGTH_LONG).show()
         resetGame()
     }
 
     private fun resetGame() {
-        TODO("Not yet implemented")
+        // RESET PUNTUACIÓ A ZERO
+        counter = 0
+        counterTextView.text = counter.toString()
+
+        // REINICIALITZAR EL COMPTADOR
+        time = INITIAL_TIME
+        timeTextView.text = time.toString()
+        initCountDown()
+
+        // GAME STARTED A FALSE
+        appStarted = false
     }
 }

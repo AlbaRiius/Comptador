@@ -2,5 +2,5 @@
     <string name="app_name">Comptador</string>
     <string name="touchme">Toca\'m</string>
     <string name="timeText">Temps disponible: %1$d</string>
-    <string name="endGame">Temps acabat</string>
+    <string name="endgame">Temps acabat! Resultat: %1$d</string>
 </resources>
